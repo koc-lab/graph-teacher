@@ -1,9 +1,11 @@
 import logging
 from enum import Enum
 
+from dotenv import load_dotenv
 import torch
 from torch_geometric.nn import ChebConv, GCNConv, ResGatedGraphConv
 
+load_dotenv()
 logging.getLogger("transformers.modeling_utils").setLevel(logging.ERROR)
 
 
