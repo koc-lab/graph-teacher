@@ -84,7 +84,10 @@ class Trainer:
             metric_value = self.args.evaluation_function(y, y_hat)
 
             del y, y_hat, dl, t
-            torch.mps.empty_cache()
+            if torch.cuda.is_available():
+                torch.cuda.empty_cache()
+            elif torch.mps.is_available():
+                torch.mps.empty_cache()
             return metric_value
 
     def check_data_key(self, data_key):
