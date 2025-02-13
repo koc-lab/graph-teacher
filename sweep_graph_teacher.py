@@ -11,14 +11,23 @@ from graph_teacher.runner import run_single_configuration
 # Set the logging level to ERROR to suppress warnings
 
 
-dataset_name = GLUEDatasetName.SST2
-gnn_backbone = GNNBackBone.GCNConv
-encoder_backbone = EncoderModelBackbone.BERT_BASE_UNCASED
-train_percentage = TrainDatasetPercentage.FIFTY
+dataset_name = GLUEDatasetName.RTE
+gnn_backbone = GNNBackBone.ResGatedGraphConv
+encoder_backbone = EncoderModelBackbone.DISTILBERT_BASE_UNCASED
+train_percentage = TrainDatasetPercentage.FIVE
+experiment_no = "37"
+
+sweep_name = f"{experiment_no}_{dataset_name.value}_{gnn_backbone.name}_{encoder_backbone.value}_{train_percentage.value}"
 
 
-sweep_name = f"36_{dataset_name.value}_{gnn_backbone.name}_{encoder_backbone.value}_{train_percentage.value}_new"
+## GPU Sığmazsa değiştirilebilecek parametreler
 
+# Arttırabileceklerin
+connection_threshold = 0.3
+
+# Azaltabileceklerin
+max_length = 64
+batch_size = 32
 # %%
 sweep_config = {
     "name": sweep_name,
@@ -32,7 +41,8 @@ sweep_config = {
         "fan_mid": {"values": [64, 128]},
         "gcn_dropout": {"max": 0.7, "min": 0.1, "distribution": "uniform"},
         "gcn_lr": {"min": 5e-3, "max": 5e-2, "distribution": "uniform"},
-        "connection_threshold": {"values": [0.3]},
+        # Sığmazsa connection threshold arttırılabilir 0.05
+        "connection_threshold": {"values": [connection_threshold]},
         "lmbd": {"min": 0.3, "max": 0.9, "distribution": "uniform"},
         "sweep_name": {"value": sweep_name},
         # Pipeline Parameters
@@ -41,15 +51,15 @@ sweep_config = {
 
 
 def main():
-    global encoder_backbone, dataset_name, train_percentage, gnn_backbone
+    global encoder_backbone, dataset_name, train_percentage, gnn_backbone, batch_size, max_length
     wandb.init(tags=sweep_name)
     set_seeds(42)
     encoder_hp = EncoderHyperParams(
         encoder_backbone=encoder_backbone,
         dataset_name=dataset_name,
         train_percentage=train_percentage,
-        max_length=64,
-        batch_size=32,
+        max_length=max_length,
+        batch_size=batch_size,
         dropout=wandb.config.encoder_dropout,
         lr=wandb.config.encoder_lr,
     )
