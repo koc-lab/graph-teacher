@@ -41,12 +41,6 @@ GraphTeacher introduces a semi-supervised fine-tuning framework that augments Tr
 
 ---
 
-## 🚀 Quick Start
-
-
-
----
-
 ## 📦 Requirements
 
 - Python ≥ 3.9
