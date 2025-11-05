@@ -8,3 +8,40 @@ GraphTeacher introduces a semi-supervised fine-tuning framework that augments Tr
 
 > This repository contains the official implementation accompanying the paper.
 
+
+---
+
+## 🔑 Key Features
+
+- Semi-supervised fine-tuning for Transformer models
+- Graph built only over labeled + unlabeled **training** data
+- **No test-node usage** → avoids information leakage
+- **Inductive inference** → new samples do not require re-graphing
+- Works with BERT, DistilBERT, RoBERTa
+- Significant gains in low-label settings (5–50% labeled data)
+
+---
+
+## 📂 Repository Structure
+
+| Path | Description |
+|------|------------|
+| `graph_teacher/` | Core GraphTeacher implementation |
+| `baseline/` | Baseline Transformer fine-tuning code |
+| `commons/` | Shared utilities (config, dataset loaders, helpers) |
+| **`sweep_graph_teacher.py`** | ✅ **Main script** — runs GraphTeacher sweeps |
+| `sweep_baseline.py` | Sweep for baseline models |
+| `exp_book_gnn.py` | GraphTeacher experimental runner |
+| `exp_book_baseline.py` | Baseline experimental runner |
+| `pyproject.toml` | Project dependency configuration |
+| `uv.lock` | Locked environment file |
+| `.gitignore` | Ignore rules |
+| `LICENSE` | License file |
+| `README.md` | This file |
+
+---
+
+## 🚀 Quick Start
+
+
+
