@@ -43,5 +43,47 @@ GraphTeacher introduces a semi-supervised fine-tuning framework that augments Tr
 
 ## 🚀 Quick Start
 
+### 1️⃣ Install Dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+Or using `uv`:
+
+```bash
+uv sync
+```
+
+Install PyTorch separately (CUDA recommended):  
+https://pytorch.org/get-started/locally/
+
+---
+
+### 2️⃣ Run GraphTeacher Experiments
+
+```bash
+python sweep_graph_teacher.py
+```
+
+### 3️⃣ Run Baseline Experiments
+
+```bash
+python sweep_baseline.py
+```
+
+---
+
+## 📦 Requirements
+
+- Python ≥ 3.9
+- PyTorch
+- HuggingFace Transformers
+- DGL or PyTorch Geometric
+- Weights & Biases (`wandb`)
+- NumPy, pandas, tqdm, matplotlib
+
+> Please install all required libraries before running the scripts.
+
 
 
