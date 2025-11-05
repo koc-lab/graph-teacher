@@ -2,4 +2,4 @@
 
 # GraphTeacher
 
-The source for the _GraphTeacher: Transductive Fine-Tuning of Encoders through Graph Neural Networks_ paper, submitted to IEEE TAI.
+The source for the _GraphTeacher: Transductive Fine-Tuning of Encoders through Graph Neural Networks_ paper, published in IEEE TAI.
